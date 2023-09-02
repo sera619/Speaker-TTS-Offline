@@ -7,15 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>794</width>
-    <height>727</height>
+    <height>745</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="resource.qrc">
-    <normaloff>:/icons/audio-cassette.ico</normaloff>:/icons/audio-cassette.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{
@@ -944,7 +940,7 @@ color:white;
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="singleKovertPage">
              <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1127,25 +1123,6 @@ color:white;
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_8">
                           <item>
-                           <widget class="QPushButton" name="multiUploadBtn">
-                            <property name="minimumSize">
-                             <size>
-                              <width>110</width>
-                              <height>0</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>110</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
-                            <property name="text">
-                             <string>Upload</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QPushButton" name="saveMultiBtn">
                             <property name="minimumSize">
                              <size>
@@ -1161,6 +1138,25 @@ color:white;
                             </property>
                             <property name="text">
                              <string>Konvertieren</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="multiUploadBtn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>110</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>110</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>Hinzufügen</string>
                             </property>
                            </widget>
                           </item>

@@ -4,6 +4,14 @@ from src.MainWindow import Ui_MainWindow
 from settings import SETTINGS
 import pyttsx3
 
+basedir = os.path.dirname(__file__)
+
+try:
+    from ctypes import windll  # Only exists on Windows.
+    myappid = 'creativeDudes.speakertts.version'
+    windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+except ImportError:
+    pass
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -217,7 +225,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 def main():
     app = QtWidgets.QApplication(sys.argv)
     app.setStyle('Fusion')
+    app.setWindowIcon(QtGui.QIcon(os.path.join(basedir,'audio-cassette.ico')))
     window = MainWindow()
+    window.setWindowIcon(QtGui.QIcon(os.path.join(basedir,'audio-cassette.ico')))
     window.show()
     app.exec()
 

@@ -26,10 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(794, 727)
-        icon = QIcon()
-        icon.addFile(u":/icons/audio-cassette.ico", QSize(), QIcon.Normal, QIcon.Off)
-        MainWindow.setWindowIcon(icon)
+        MainWindow.resize(794, 745)
         MainWindow.setStyleSheet(u"QMainWindow{\n"
 "	border-radius: 15px;\n"
 "	background-color: rgba(31, 31, 31, 120);\n"
@@ -98,9 +95,9 @@ class Ui_MainWindow(object):
         self.miniBtnMinimode.setObjectName(u"miniBtnMinimode")
         self.miniBtnMinimode.setMinimumSize(QSize(25, 25))
         self.miniBtnMinimode.setMaximumSize(QSize(25, 25))
-        icon1 = QIcon()
-        icon1.addFile(u":/icons/basic_download.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.miniBtnMinimode.setIcon(icon1)
+        icon = QIcon()
+        icon.addFile(u":/icons/basic_download.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.miniBtnMinimode.setIcon(icon)
 
         self.horizontalLayout.addWidget(self.miniBtnMinimode, 0, Qt.AlignHCenter|Qt.AlignTop)
 
@@ -109,9 +106,9 @@ class Ui_MainWindow(object):
         self.miniBtnMinimize.setEnabled(False)
         self.miniBtnMinimize.setMinimumSize(QSize(25, 25))
         self.miniBtnMinimize.setMaximumSize(QSize(25, 25))
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/basic_display.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.miniBtnMinimize.setIcon(icon2)
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/basic_display.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.miniBtnMinimize.setIcon(icon1)
 
         self.horizontalLayout.addWidget(self.miniBtnMinimize, 0, Qt.AlignHCenter|Qt.AlignTop)
 
@@ -124,9 +121,9 @@ class Ui_MainWindow(object):
         self.miniBtnExit.setSizePolicy(sizePolicy1)
         self.miniBtnExit.setMinimumSize(QSize(25, 25))
         self.miniBtnExit.setMaximumSize(QSize(25, 25))
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/basic_ban.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.miniBtnExit.setIcon(icon3)
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/basic_ban.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.miniBtnExit.setIcon(icon2)
 
         self.horizontalLayout.addWidget(self.miniBtnExit, 0, Qt.AlignHCenter|Qt.AlignTop)
 
@@ -604,19 +601,19 @@ class Ui_MainWindow(object):
         self.frame_15.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.frame_15)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.multiUploadBtn = QPushButton(self.frame_15)
-        self.multiUploadBtn.setObjectName(u"multiUploadBtn")
-        self.multiUploadBtn.setMinimumSize(QSize(110, 0))
-        self.multiUploadBtn.setMaximumSize(QSize(110, 16777215))
-
-        self.horizontalLayout_8.addWidget(self.multiUploadBtn)
-
         self.saveMultiBtn = QPushButton(self.frame_15)
         self.saveMultiBtn.setObjectName(u"saveMultiBtn")
         self.saveMultiBtn.setMinimumSize(QSize(110, 0))
         self.saveMultiBtn.setMaximumSize(QSize(110, 16777215))
 
         self.horizontalLayout_8.addWidget(self.saveMultiBtn)
+
+        self.multiUploadBtn = QPushButton(self.frame_15)
+        self.multiUploadBtn.setObjectName(u"multiUploadBtn")
+        self.multiUploadBtn.setMinimumSize(QSize(110, 0))
+        self.multiUploadBtn.setMaximumSize(QSize(110, 16777215))
+
+        self.horizontalLayout_8.addWidget(self.multiUploadBtn)
 
         self.eraseUploadBtn = QPushButton(self.frame_15)
         self.eraseUploadBtn.setObjectName(u"eraseUploadBtn")
@@ -674,7 +671,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -706,8 +703,8 @@ class Ui_MainWindow(object):
         self.rateLabel.setText(QCoreApplication.translate("MainWindow", u"Rate", None))
         self.resetOptionBtn.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Text zum Konvertieren:", None))
-        self.multiUploadBtn.setText(QCoreApplication.translate("MainWindow", u"Upload", None))
         self.saveMultiBtn.setText(QCoreApplication.translate("MainWindow", u"Konvertieren", None))
+        self.multiUploadBtn.setText(QCoreApplication.translate("MainWindow", u"Hinzuf\u00fcgen", None))
         self.eraseUploadBtn.setText(QCoreApplication.translate("MainWindow", u"Entfernen", None))
     # retranslateUi
 
