@@ -28,20 +28,20 @@ You can download this software as a [standalone Windows executable](https://gith
 1. Clone this repository to your local computer.
 
 ```bash
-    git clone https://github.com/sera619/Speaker-TTS-Offline.git
-    cd Speaker-TTS-Offline
+git clone https://github.com/sera619/Speaker-TTS-Offline.git
+cd Speaker-TTS-Offline
 ```
 
 2. Install the dependencies.
    
 ```bash
-    pip install PySide6 pyttsx3
+pip install PySide6 pyttsx3
 ```
 
 3. Run the software.
 
 ```bash
-    python main.py
+python main.py
 ```
 
 ## Usage
