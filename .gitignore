@@ -7,3 +7,4 @@ qt-tts/
 assets/
 Speaker-TTS.spec
 test/
+makefile
