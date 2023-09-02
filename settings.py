@@ -1,7 +1,7 @@
 SETTINGS = {
     "title" : "Speaker - Text to Speech",
     "author": "S3r43o3",
-    "version": "1.3.8",
+    "version": "2.0.0",
     "savepath": ".\\output\\",
     "testText": "Willkommen!\nDies ist eine Testausgabe deiner aktuell ausgewählten Stimme.",
     "github": "https://github.com/sera619/Speaker-TTS-Offline",
