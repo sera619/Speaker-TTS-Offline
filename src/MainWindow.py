@@ -93,7 +93,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.miniBtnMinimode = QPushButton(self.miniMenuFrame)
         self.miniBtnMinimode.setObjectName(u"miniBtnMinimode")
-        self.miniBtnMinimode.setMinimumSize(QSize(25, 25))
+        self.miniBtnMinimode.setMinimumSize(QSize(30, 30))
         self.miniBtnMinimode.setMaximumSize(QSize(25, 25))
         icon = QIcon()
         icon.addFile(u":/icons/basic_download.svg", QSize(), QIcon.Normal, QIcon.Off)
@@ -103,8 +103,8 @@ class Ui_MainWindow(object):
 
         self.miniBtnMinimize = QPushButton(self.miniMenuFrame)
         self.miniBtnMinimize.setObjectName(u"miniBtnMinimize")
-        self.miniBtnMinimize.setEnabled(False)
-        self.miniBtnMinimize.setMinimumSize(QSize(25, 25))
+        self.miniBtnMinimize.setEnabled(True)
+        self.miniBtnMinimize.setMinimumSize(QSize(30, 30))
         self.miniBtnMinimize.setMaximumSize(QSize(25, 25))
         icon1 = QIcon()
         icon1.addFile(u":/icons/basic_display.svg", QSize(), QIcon.Normal, QIcon.Off)
@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.miniBtnExit.sizePolicy().hasHeightForWidth())
         self.miniBtnExit.setSizePolicy(sizePolicy1)
-        self.miniBtnExit.setMinimumSize(QSize(25, 25))
+        self.miniBtnExit.setMinimumSize(QSize(30, 30))
         self.miniBtnExit.setMaximumSize(QSize(25, 25))
         icon2 = QIcon()
         icon2.addFile(u":/icons/basic_ban.svg", QSize(), QIcon.Normal, QIcon.Off)
@@ -168,6 +168,39 @@ class Ui_MainWindow(object):
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.verticalLayout_9 = QVBoxLayout(self.frame_6)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.multiBtn = QPushButton(self.frame_6)
+        self.multiBtn.setObjectName(u"multiBtn")
+        self.multiBtn.setEnabled(True)
+        self.multiBtn.setMinimumSize(QSize(110, 0))
+        self.multiBtn.setStyleSheet(u" QPushButton {\n"
+"		background-color:none;\n"
+"                border: .5px solid #ff3333;\n"
+"				\n"
+"	color: rgb(255, 0, 0);\n"
+"			padding:3 15;\n"
+"                border-radius: 5px;\n"
+"                font-weight: bold;\n"
+"            }\n"
+"            QPushButton:hover {\n"
+"              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 1 #C0392B,                              \n"
+"		stop: 0 #E74C3C );\n"
+"color:white;\n"
+"            }\n"
+"            QPushButton:pressed {\n"
+"                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 0 #C0392B,                              \n"
+"		stop: 1 #E74C3C );\n"
+"	color:white;            \n"
+"}\n"
+" QPushButton:disabled {\n"
+"        background-color: none;\n"
+"        border-color: #aaaaaa;\n"
+"        color: #666666;\n"
+"    }")
+
+        self.verticalLayout_9.addWidget(self.multiBtn, 0, Qt.AlignHCenter)
+
         self.label_3 = QLabel(self.frame_6)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setStyleSheet(u"QLabel {\n"
@@ -231,13 +264,6 @@ class Ui_MainWindow(object):
         self.saveBtn.setMinimumSize(QSize(110, 0))
 
         self.verticalLayout_7.addWidget(self.saveBtn, 0, Qt.AlignHCenter)
-
-        self.multiBtn = QPushButton(self.optionFrame)
-        self.multiBtn.setObjectName(u"multiBtn")
-        self.multiBtn.setEnabled(True)
-        self.multiBtn.setMinimumSize(QSize(110, 0))
-
-        self.verticalLayout_7.addWidget(self.multiBtn, 0, Qt.AlignHCenter)
 
         self.frame_7 = QFrame(self.optionFrame)
         self.frame_7.setObjectName(u"frame_7")
@@ -468,13 +494,27 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_18.addWidget(self.frame_5)
 
-        self.resetOptionBtn = QPushButton(self.frame_13)
+        self.frame_19 = QFrame(self.frame_13)
+        self.frame_19.setObjectName(u"frame_19")
+        self.frame_19.setFrameShape(QFrame.StyledPanel)
+        self.frame_19.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_11 = QHBoxLayout(self.frame_19)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.helpBtn = QPushButton(self.frame_19)
+        self.helpBtn.setObjectName(u"helpBtn")
+
+        self.horizontalLayout_11.addWidget(self.helpBtn)
+
+        self.resetOptionBtn = QPushButton(self.frame_19)
         self.resetOptionBtn.setObjectName(u"resetOptionBtn")
         self.resetOptionBtn.setMinimumSize(QSize(110, 0))
         self.resetOptionBtn.setMaximumSize(QSize(110, 16777215))
         self.resetOptionBtn.setStyleSheet(u"")
 
-        self.verticalLayout_18.addWidget(self.resetOptionBtn, 0, Qt.AlignHCenter)
+        self.horizontalLayout_11.addWidget(self.resetOptionBtn)
+
+
+        self.verticalLayout_18.addWidget(self.frame_19)
 
 
         self.verticalLayout_7.addWidget(self.frame_13)
@@ -498,6 +538,146 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.stackedWidget = QStackedWidget(self.rightFrame)
         self.stackedWidget.setObjectName(u"stackedWidget")
+        self.helpPage = QWidget()
+        self.helpPage.setObjectName(u"helpPage")
+        self.verticalLayout_19 = QVBoxLayout(self.helpPage)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.frame_16 = QFrame(self.helpPage)
+        self.frame_16.setObjectName(u"frame_16")
+        self.frame_16.setFrameShape(QFrame.StyledPanel)
+        self.frame_16.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_20 = QVBoxLayout(self.frame_16)
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.label_10 = QLabel(self.frame_16)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setStyleSheet(u"QLabel {\n"
+"	font: 18pt \"Terminator Two\";\n"
+"	color: rgb(255, 0, 0)\n"
+"}")
+        self.label_10.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_20.addWidget(self.label_10)
+
+        self.helpTextLabel = QLabel(self.frame_16)
+        self.helpTextLabel.setObjectName(u"helpTextLabel")
+        sizePolicy2.setHeightForWidth(self.helpTextLabel.sizePolicy().hasHeightForWidth())
+        self.helpTextLabel.setSizePolicy(sizePolicy2)
+        self.helpTextLabel.setStyleSheet(u"	font: 14pt \"Terminator Two\";\n"
+"color: white;")
+        self.helpTextLabel.setAlignment(Qt.AlignCenter)
+        self.helpTextLabel.setWordWrap(True)
+
+        self.verticalLayout_20.addWidget(self.helpTextLabel)
+
+        self.label_11 = QLabel(self.frame_16)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setStyleSheet(u"QLabel {\n"
+"	font: 18pt \"Terminator Two\";\n"
+"	color: rgb(255, 0, 0)\n"
+"}")
+        self.label_11.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_20.addWidget(self.label_11)
+
+        self.frame_18 = QFrame(self.frame_16)
+        self.frame_18.setObjectName(u"frame_18")
+        self.frame_18.setStyleSheet(u" QPushButton {\n"
+"		background-color:none;\n"
+"                border: .5px solid #ff3333;\n"
+"				\n"
+"	color: rgb(255, 0, 0);\n"
+"			padding:3 15;\n"
+"                border-radius: 5px;\n"
+"                font-weight: bold;\n"
+"            }\n"
+"            QPushButton:hover {\n"
+"              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 1 #C0392B,                              \n"
+"		stop: 0 #E74C3C );\n"
+"color:white;\n"
+"            }\n"
+"            QPushButton:pressed {\n"
+"                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 0 #C0392B,                              \n"
+"		stop: 1 #E74C3C );\n"
+"	color:white;            \n"
+"}\n"
+" QPushButton:disabled {\n"
+"        background-color: none;\n"
+"        border-color: #aaaaaa;\n"
+"        color: #666666;\n"
+"    }")
+        self.frame_18.setFrameShape(QFrame.StyledPanel)
+        self.frame_18.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_10 = QHBoxLayout(self.frame_18)
+        self.horizontalLayout_10.setSpacing(4)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.githubBtn = QPushButton(self.frame_18)
+        self.githubBtn.setObjectName(u"githubBtn")
+        self.githubBtn.setMinimumSize(QSize(110, 0))
+
+        self.horizontalLayout_10.addWidget(self.githubBtn, 0, Qt.AlignHCenter)
+
+        self.ytBtn = QPushButton(self.frame_18)
+        self.ytBtn.setObjectName(u"ytBtn")
+        self.ytBtn.setMinimumSize(QSize(110, 0))
+
+        self.horizontalLayout_10.addWidget(self.ytBtn, 0, Qt.AlignHCenter)
+
+        self.thmBtn = QPushButton(self.frame_18)
+        self.thmBtn.setObjectName(u"thmBtn")
+        self.thmBtn.setMinimumSize(QSize(110, 0))
+
+        self.horizontalLayout_10.addWidget(self.thmBtn, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_20.addWidget(self.frame_18, 0, Qt.AlignHCenter)
+
+        self.frame_17 = QFrame(self.frame_16)
+        self.frame_17.setObjectName(u"frame_17")
+        self.frame_17.setStyleSheet(u" QPushButton {\n"
+"		background-color:none;\n"
+"                border: .5px solid #ff3333;\n"
+"				\n"
+"	color: rgb(255, 0, 0);\n"
+"			padding:3 15;\n"
+"                border-radius: 5px;\n"
+"                font-weight: bold;\n"
+"            }\n"
+"            QPushButton:hover {\n"
+"              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 1 #C0392B,                              \n"
+"		stop: 0 #E74C3C );\n"
+"color:white;\n"
+"            }\n"
+"            QPushButton:pressed {\n"
+"                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 0 #C0392B,                              \n"
+"		stop: 1 #E74C3C );\n"
+"	color:white;            \n"
+"}\n"
+" QPushButton:disabled {\n"
+"        background-color: none;\n"
+"        border-color: #aaaaaa;\n"
+"        color: #666666;\n"
+"    }")
+        self.frame_17.setFrameShape(QFrame.StyledPanel)
+        self.frame_17.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_9 = QHBoxLayout(self.frame_17)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.helpBackBtn = QPushButton(self.frame_17)
+        self.helpBackBtn.setObjectName(u"helpBackBtn")
+        self.helpBackBtn.setMinimumSize(QSize(110, 0))
+
+        self.horizontalLayout_9.addWidget(self.helpBackBtn, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_20.addWidget(self.frame_17)
+
+
+        self.verticalLayout_19.addWidget(self.frame_16)
+
+        self.stackedWidget.addWidget(self.helpPage)
         self.singleKovertPage = QWidget()
         self.singleKovertPage.setObjectName(u"singleKovertPage")
         self.verticalLayout_5 = QVBoxLayout(self.singleKovertPage)
@@ -684,13 +864,13 @@ class Ui_MainWindow(object):
         self.miniBtnMinimode.setText("")
         self.miniBtnMinimize.setText("")
         self.miniBtnExit.setText("")
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Optionen", None))
-        self.speakBtn.setText(QCoreApplication.translate("MainWindow", u"Abspielen", None))
-        self.saveBtn.setText(QCoreApplication.translate("MainWindow", u"Speichern", None))
         self.multiBtn.setText(QCoreApplication.translate("MainWindow", u"Multi-Konvertieren", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Speichername", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Optionen", None))
+        self.speakBtn.setText(QCoreApplication.translate("MainWindow", u"Sprechen", None))
+        self.saveBtn.setText(QCoreApplication.translate("MainWindow", u"Speichern", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Datei Name", None))
         self.filenameEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"test", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Datei-Format", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Datei Format", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Textdatei laden", None))
         self.uploadTxtBtn.setText(QCoreApplication.translate("MainWindow", u"Upload", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Speicherpfad", None))
@@ -701,7 +881,15 @@ class Ui_MainWindow(object):
         self.playDemoBtn.setText(QCoreApplication.translate("MainWindow", u"Demo", None))
         self.valumeLabel.setText(QCoreApplication.translate("MainWindow", u"Volume", None))
         self.rateLabel.setText(QCoreApplication.translate("MainWindow", u"Rate", None))
+        self.helpBtn.setText(QCoreApplication.translate("MainWindow", u"Hilfe", None))
         self.resetOptionBtn.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Hilfe", None))
+        self.helpTextLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">- Geben Sie den Text ein, den Sie in eine Audio-Datei umwandeln m\u00f6chten.</span></p><p><span style=\" font-size:12pt;\">- Passen Sie die Sprechgeschwindigkeit und Lautst\u00e4rke nach Bedarf an.</span></p><p><span style=\" font-size:12pt;\">- W\u00e4hlen Sie das gew\u00fcnschte Audioformat aus der Dropdown-Liste aus.</span></p><p><span style=\" font-size:12pt;\">- Klicken Sie auf die Schaltfl\u00e4che &quot;Sprechen&quot; oder &quot;Speichern&quot;, um den Text in Sprache umzuwandeln und anzuh\u00f6ren oder zu speichern.</span></p><p><span style=\" font-size:12pt;\">- Um zur Mehrfachkonvertierung zu wechseln, klicken Sie auf die Schaltfl\u00e4che &quot;Multi-Konvertieren&quot;/&quot;Single-Konvertieren&quot;</span></p></body></html>", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Social Media", None))
+        self.githubBtn.setText(QCoreApplication.translate("MainWindow", u"Github", None))
+        self.ytBtn.setText(QCoreApplication.translate("MainWindow", u"Youtube", None))
+        self.thmBtn.setText(QCoreApplication.translate("MainWindow", u"TryHackMe", None))
+        self.helpBackBtn.setText(QCoreApplication.translate("MainWindow", u"Zur\u00fcck", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Text zum Konvertieren:", None))
         self.saveMultiBtn.setText(QCoreApplication.translate("MainWindow", u"Konvertieren", None))
         self.multiUploadBtn.setText(QCoreApplication.translate("MainWindow", u"Hinzuf\u00fcgen", None))

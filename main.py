@@ -1,8 +1,11 @@
 import sys,os
 from PySide6 import QtWidgets, QtCore, QtGui
+from PySide6.QtCore import QThreadPool
 from src.MainWindow import Ui_MainWindow
+from worker import Worker
 from settings import SETTINGS
 import pyttsx3
+import webbrowser
 
 basedir = os.path.dirname(__file__)
 
@@ -33,7 +36,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupDials()
         self.resetOptions()
         self.fileKovertList = []
-        
+        self.lastPage = 1
+
+        self.threadpool = QThreadPool()
+        self.stackedWidget.setCurrentIndex(1)
+        #print("Worker started with maximum %d threads" % self.threadpool.maxThreadCount())
+    
+
+    def generateTestFiles(self):
+        texts = ["test1", "test2", "test3", "test4"]
+        for t in texts:
+            with open('test/'+ t + '.txt', "w") as f:
+                f.write(t)
+       
     def setupDials(self):
         self.rateDial.setMaximum(500)
         self.rateDial.setMinimum(0)
@@ -51,6 +66,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.speakBtn.clicked.connect(self.speakTextClicked)
         self.saveBtn.clicked.connect(self.saveAudioClicked)
         self.miniBtnMinimode.clicked.connect(self.showMinimized)
+
+        self.miniBtnMinimize.setDisabled(True)
+        #self.miniBtnMinimize.clicked.connect(self.generateTestFiles)
         voices = self.engine.getProperty('voices')
         voicelist = []
         for i in voices:
@@ -68,6 +86,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.resetOptionBtn.clicked.connect(self.resetOptions)
         self.openPathBtn.clicked.connect(self.openSavePath)
         self.playDemoBtn.clicked.connect(self.playDemo)
+        self.helpBtn.clicked.connect(self.showHelp)
+        self.helpBackBtn.clicked.connect(self.backFromHelp)
+        self.githubBtn.clicked.connect(self.openGithub)
+        self.ytBtn.clicked.connect(self.openYoutube)
+        self.thmBtn.clicked.connect(self.openTHM)
+
+    def runMultiKonvert(self):
+        worker = Worker(self.mulipleConvert)
+        self.threadpool.start(worker)
+    
+    def runPlayDemo(self):
+        worker = Worker(self.playDemo)
+        self.threadpool.start(worker)
+    
+    def runSaveAudio(self):
+        worker = Worker(self.saveAudioClicked)
+        self.threadpool.start(worker)
+    
+    def runSpeakText(self):
+        worker = Worker(self.speakTextClicked)
+        self.threadpool.start(worker)
 
     def setupFileSystem(self, path):
         if os.path.exists(path):
@@ -94,6 +133,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.stackedWidget.setCurrentWidget(self.singleKovertPage)
             self.fileKovertList.clear()
             self.multiBtn.setText("Multi-Konvertieren")
+        self.lastPage = self.stackedWidget.currentIndex()
 
     def showNotification(self, title, text):
         msgBox = QtWidgets.QMessageBox(self)
@@ -101,6 +141,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         msgBox.setText(text)
         msgBox.setIcon(QtWidgets.QMessageBox.Information)
         msgBox.addButton("OK", QtWidgets.QMessageBox.AcceptRole)
+        msgBox.setWindowIcon(QtGui.QIcon(os.path.join(basedir,'audio-cassette.ico')))
         msgBox.exec()
 
     def chooseFolderClicked(self):
@@ -113,14 +154,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def uploadTextClicked(self):
         options = QtWidgets.QFileDialog.Options()
         options |= QtWidgets.QFileDialog.ReadOnly
-        filePath, _ = QtWidgets.QFileDialog.getOpenFileName(self, 'Select file', '', options=options)
+        filters = '*.txt'
+        filePath, _ = QtWidgets.QFileDialog.getOpenFileName(self, 'Select file', '', options=options, filter=filters)
         if filePath:
             with open(filePath, "r") as f:
                 text = f.read()
                 self.convertTextEdit.setPlainText(text)
 
     def speakTextClicked(self):
-        if self.convertTextEdit != "":
+        if self.convertTextEdit.toPlainText() != "":
             self.engine.say(self.convertTextEdit.toPlainText())
             self.engine.runAndWait()
         else:
@@ -130,11 +172,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.convertTextEdit != "":
             if self.filenameEdit.text() != "":
                 filename = self.filenameEdit.text()
-                print(filename)
                 self.engine.save_to_file(self.convertTextEdit.toPlainText(), SETTINGS['savepath']+filename+self.formatComboBox.currentText())
                 self.engine.runAndWait()
                 self.convertTextEdit.clear()
-                self.showNotification("Information", "Text wurde erfolgreich konvertiert!")
+                self.filenameEdit.clear()
+                self.showNotification("Abgeschlossen", "Text wurde erfolgreich konvertiert!")
             else:
                 self.showNotification("Fehler", "Bitte gebe einen Dateinamen ein!")               
         else:
@@ -176,7 +218,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.filelistView.takeItem(self.filelistView.row(itemToRemove))
 
     def mulipleConvert(self):
-        if len(self.fileKovertList) < 0:
+        if len(self.filelistView.children()) > 0:
             if self.filenameEdit.text() != "":
                 count = 0
                 self.kovertProgressbar.setMaximum(len(self.fileKovertList))
@@ -221,6 +263,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.move(self.pos() + event.globalPos() - self.dragPos)
             self.dragPos = event.globalPos()
             event.accept()
+    
+    def showHelp(self):
+        self.lastPage = self.stackedWidget.currentIndex()
+        self.stackedWidget.setCurrentWidget(self.helpPage)
+    
+    def backFromHelp(self):
+        self.stackedWidget.setCurrentIndex(self.lastPage)
+
+    def openGithub(self):
+        webbrowser.open(SETTINGS['github'])
+    
+    def openYoutube(self):
+        webbrowser.open(SETTINGS['youtube'])
+    
+    def openTHM(self):
+        webbrowser.open(SETTINGS['thm'])
 
 def main():
     app = QtWidgets.QApplication(sys.argv)

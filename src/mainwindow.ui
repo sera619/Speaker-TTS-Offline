@@ -153,8 +153,8 @@
            <widget class="QPushButton" name="miniBtnMinimode">
             <property name="minimumSize">
              <size>
-              <width>25</width>
-              <height>25</height>
+              <width>30</width>
+              <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -175,12 +175,12 @@
           <item alignment="Qt::AlignHCenter|Qt::AlignTop">
            <widget class="QPushButton" name="miniBtnMinimize">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="minimumSize">
              <size>
-              <width>25</width>
-              <height>25</height>
+              <width>30</width>
+              <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -208,8 +208,8 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>25</width>
-              <height>25</height>
+              <width>30</width>
+              <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -320,6 +320,50 @@
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">
+                <item alignment="Qt::AlignHCenter">
+                 <widget class="QPushButton" name="multiBtn">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>110</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"> QPushButton {
+		background-color:none;
+                border: .5px solid #ff3333;
+				
+	color: rgb(255, 0, 0);
+			padding:3 15;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 1 #C0392B,                              
+		stop: 0 #E74C3C );
+color:white;
+            }
+            QPushButton:pressed {
+                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 0 #C0392B,                              
+		stop: 1 #E74C3C );
+	color:white;            
+}
+ QPushButton:disabled {
+        background-color: none;
+        border-color: #aaaaaa;
+        color: #666666;
+    }</string>
+                  </property>
+                  <property name="text">
+                   <string>Multi-Konvertieren</string>
+                  </property>
+                 </widget>
+                </item>
                 <item>
                  <widget class="QLabel" name="label_3">
                   <property name="styleSheet">
@@ -403,7 +447,7 @@ color:white;
                    </size>
                   </property>
                   <property name="text">
-                   <string>Abspielen</string>
+                   <string>Sprechen</string>
                   </property>
                  </widget>
                 </item>
@@ -417,22 +461,6 @@ color:white;
                   </property>
                   <property name="text">
                    <string>Speichern</string>
-                  </property>
-                 </widget>
-                </item>
-                <item alignment="Qt::AlignHCenter">
-                 <widget class="QPushButton" name="multiBtn">
-                  <property name="enabled">
-                   <bool>true</bool>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>110</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Multi-Konvertieren</string>
                   </property>
                  </widget>
                 </item>
@@ -466,7 +494,7 @@ color:white;
 }</string>
                      </property>
                      <property name="text">
-                      <string>Speichername</string>
+                      <string>Datei Name</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
@@ -516,7 +544,7 @@ color:white;
 }</string>
                      </property>
                      <property name="text">
-                      <string>Datei-Format</string>
+                      <string>Datei Format</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
@@ -879,26 +907,45 @@ color:white;
                      </layout>
                     </widget>
                    </item>
-                   <item alignment="Qt::AlignHCenter">
-                    <widget class="QPushButton" name="resetOptionBtn">
-                     <property name="minimumSize">
-                      <size>
-                       <width>110</width>
-                       <height>0</height>
-                      </size>
+                   <item>
+                    <widget class="QFrame" name="frame_19">
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
                      </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>110</width>
-                       <height>16777215</height>
-                      </size>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>Reset</string>
-                     </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_11">
+                      <item>
+                       <widget class="QPushButton" name="helpBtn">
+                        <property name="text">
+                         <string>Hilfe</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="resetOptionBtn">
+                        <property name="minimumSize">
+                         <size>
+                          <width>110</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>110</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Reset</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </item>
                   </layout>
@@ -940,8 +987,214 @@ color:white;
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
+            <widget class="QWidget" name="helpPage">
+             <layout class="QVBoxLayout" name="verticalLayout_19">
+              <item>
+               <widget class="QFrame" name="frame_16">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_20">
+                 <item>
+                  <widget class="QLabel" name="label_10">
+                   <property name="styleSheet">
+                    <string notr="true">QLabel {
+	font: 18pt &quot;Terminator Two&quot;;
+	color: rgb(255, 0, 0)
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Hilfe</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="helpTextLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">	font: 14pt &quot;Terminator Two&quot;;
+color: white;</string>
+                   </property>
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;- Geben Sie den Text ein, den Sie in eine Audio-Datei umwandeln möchten.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;- Passen Sie die Sprechgeschwindigkeit und Lautstärke nach Bedarf an.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;- Wählen Sie das gewünschte Audioformat aus der Dropdown-Liste aus.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;- Klicken Sie auf die Schaltfläche &amp;quot;Sprechen&amp;quot; oder &amp;quot;Speichern&amp;quot;, um den Text in Sprache umzuwandeln und anzuhören oder zu speichern.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;- Um zur Mehrfachkonvertierung zu wechseln, klicken Sie auf die Schaltfläche &amp;quot;Multi-Konvertieren&amp;quot;/&amp;quot;Single-Konvertieren&amp;quot;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_11">
+                   <property name="styleSheet">
+                    <string notr="true">QLabel {
+	font: 18pt &quot;Terminator Two&quot;;
+	color: rgb(255, 0, 0)
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Social Media</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QFrame" name="frame_18">
+                   <property name="styleSheet">
+                    <string notr="true"> QPushButton {
+		background-color:none;
+                border: .5px solid #ff3333;
+				
+	color: rgb(255, 0, 0);
+			padding:3 15;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 1 #C0392B,                              
+		stop: 0 #E74C3C );
+color:white;
+            }
+            QPushButton:pressed {
+                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 0 #C0392B,                              
+		stop: 1 #E74C3C );
+	color:white;            
+}
+ QPushButton:disabled {
+        background-color: none;
+        border-color: #aaaaaa;
+        color: #666666;
+    }</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_10">
+                    <property name="spacing">
+                     <number>4</number>
+                    </property>
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QPushButton" name="githubBtn">
+                      <property name="minimumSize">
+                       <size>
+                        <width>110</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Github</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QPushButton" name="ytBtn">
+                      <property name="minimumSize">
+                       <size>
+                        <width>110</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Youtube</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QPushButton" name="thmBtn">
+                      <property name="minimumSize">
+                       <size>
+                        <width>110</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>TryHackMe</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_17">
+                   <property name="styleSheet">
+                    <string notr="true"> QPushButton {
+		background-color:none;
+                border: .5px solid #ff3333;
+				
+	color: rgb(255, 0, 0);
+			padding:3 15;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 1 #C0392B,                              
+		stop: 0 #E74C3C );
+color:white;
+            }
+            QPushButton:pressed {
+                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 0 #C0392B,                              
+		stop: 1 #E74C3C );
+	color:white;            
+}
+ QPushButton:disabled {
+        background-color: none;
+        border-color: #aaaaaa;
+        color: #666666;
+    }</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_9">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QPushButton" name="helpBackBtn">
+                      <property name="minimumSize">
+                       <size>
+                        <width>110</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Zurück</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
             <widget class="QWidget" name="singleKovertPage">
              <layout class="QVBoxLayout" name="verticalLayout_5">
               <property name="spacing">

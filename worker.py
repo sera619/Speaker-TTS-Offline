@@ -15,17 +15,11 @@ class Worker(QRunnable):
         self.fn = fn
         self.args = args
         self.kwargs = kwargs
-
-        self.signals = WorkerSignals()
-        self.kwargs['progress_callback'] = self.signals.progress
         
     @Slot()
     def run(self):
-        try:
-            result = self.fn(*self.args, **self.kwargs)
-        except:
-            print("Somewith wrong with Worker")
-        else:
-            self.signals.result.emit(result)
-        finally:
-            self.signals.finished.emit()
+        self.fn(*self.args, **self.kwargs)
+
+
+
+
