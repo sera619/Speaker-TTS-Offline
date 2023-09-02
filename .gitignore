@@ -1,0 +1,8 @@
+__pycache__
+.vscode
+build/
+dist/
+output/
+qt-tts/
+assets/
+Speaker-TTS.spec
