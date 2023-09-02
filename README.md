@@ -21,7 +21,7 @@ SpeakerTTS is an application for converting text to speech. With this applicatio
 
 ## Installation
 
-You can download this software as a [standalone Windows executable]() **OR** you clone this repository and install it from source.
+You can download this software as a [standalone Windows executable](https://github.com/sera619/Speaker-TTS-Offline/releases/tag/v1.3.8) **OR** you clone this repository and install it from source.
 
 **OR**
 
