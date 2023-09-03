@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>794</width>
-    <height>745</height>
+    <height>765</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -987,7 +987,7 @@ color:white;
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>1</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="helpPage">
              <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -1258,6 +1258,34 @@ color:white;
              </layout>
             </widget>
             <widget class="QWidget" name="multiKonvertPage">
+             <property name="styleSheet">
+              <string notr="true"> QPushButton {
+		background-color:none;
+                border: 1px solid #ff3333;
+				
+	color: rgb(255, 0, 0);
+			padding:3 15;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 1 #C0392B,                              
+		stop: 0 #E74C3C );
+color:white;
+            }
+            QPushButton:pressed {
+                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 0 #C0392B,                              
+		stop: 1 #E74C3C );
+	color:white;            
+}
+ QPushButton:disabled {
+        background-color: none;
+        border-color: #aaaaaa;
+        color: #666666;
+    }</string>
+             </property>
              <layout class="QVBoxLayout" name="verticalLayout_16">
               <item>
                <widget class="QFrame" name="frame_9">
@@ -1368,6 +1396,9 @@ color:white;
                        </item>
                        <item>
                         <widget class="QFrame" name="frame_15">
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
                          <property name="frameShape">
                           <enum>QFrame::StyledPanel</enum>
                          </property>
@@ -1456,14 +1487,118 @@ QProgressBar::chunk {
                          </property>
                         </widget>
                        </item>
+                       <item>
+                        <widget class="QListWidget" name="filelistView"/>
+                       </item>
                       </layout>
                      </widget>
                     </item>
                    </layout>
                   </widget>
                  </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_20">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_21">
                  <item>
-                  <widget class="QListWidget" name="filelistView"/>
+                  <widget class="QLabel" name="label_9">
+                   <property name="styleSheet">
+                    <string notr="true">QLabel {
+	font: 12pt &quot;Terminator Two&quot;;
+	color: rgb(255, 0, 0)
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Datein im Speicherpfad</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTableWidget" name="dataTableWidget">
+                   <property name="sizeAdjustPolicy">
+                    <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+                   </property>
+                   <property name="alternatingRowColors">
+                    <bool>true</bool>
+                   </property>
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectRows</enum>
+                   </property>
+                   <property name="textElideMode">
+                    <enum>Qt::ElideMiddle</enum>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>true</bool>
+                   </property>
+                   <property name="columnCount">
+                    <number>3</number>
+                   </property>
+                   <attribute name="horizontalHeaderCascadingSectionResizes">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderMinimumSectionSize">
+                    <number>57</number>
+                   </attribute>
+                   <attribute name="horizontalHeaderStretchLastSection">
+                    <bool>false</bool>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string>Name</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Typ</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Größe</string>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <kerning>true</kerning>
+                     </font>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_21">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_12">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QPushButton" name="clearOutputBtn">
+                      <property name="minimumSize">
+                       <size>
+                        <width>110</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Bereinigen</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
                  </item>
                 </layout>
                </widget>

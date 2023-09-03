@@ -15,18 +15,19 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QDial, QFrame,
-    QHBoxLayout, QLabel, QLineEdit, QListWidget,
-    QListWidgetItem, QMainWindow, QPlainTextEdit, QProgressBar,
-    QPushButton, QSizePolicy, QStackedWidget, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QComboBox,
+    QDial, QFrame, QHBoxLayout, QHeaderView,
+    QLabel, QLineEdit, QListWidget, QListWidgetItem,
+    QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
+    QSizePolicy, QStackedWidget, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 import src.resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(794, 745)
+        MainWindow.resize(794, 765)
         MainWindow.setStyleSheet(u"QMainWindow{\n"
 "	border-radius: 15px;\n"
 "	background-color: rgba(31, 31, 31, 120);\n"
@@ -712,6 +713,32 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.singleKovertPage)
         self.multiKonvertPage = QWidget()
         self.multiKonvertPage.setObjectName(u"multiKonvertPage")
+        self.multiKonvertPage.setStyleSheet(u" QPushButton {\n"
+"		background-color:none;\n"
+"                border: 1px solid #ff3333;\n"
+"				\n"
+"	color: rgb(255, 0, 0);\n"
+"			padding:3 15;\n"
+"                border-radius: 5px;\n"
+"                font-weight: bold;\n"
+"            }\n"
+"            QPushButton:hover {\n"
+"              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 1 #C0392B,                              \n"
+"		stop: 0 #E74C3C );\n"
+"color:white;\n"
+"            }\n"
+"            QPushButton:pressed {\n"
+"                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 0 #C0392B,                              \n"
+"		stop: 1 #E74C3C );\n"
+"	color:white;            \n"
+"}\n"
+" QPushButton:disabled {\n"
+"        background-color: none;\n"
+"        border-color: #aaaaaa;\n"
+"        color: #666666;\n"
+"    }")
         self.verticalLayout_16 = QVBoxLayout(self.multiKonvertPage)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.frame_9 = QFrame(self.multiKonvertPage)
@@ -777,6 +804,7 @@ class Ui_MainWindow(object):
 
         self.frame_15 = QFrame(self.frame_11)
         self.frame_15.setObjectName(u"frame_15")
+        self.frame_15.setStyleSheet(u"")
         self.frame_15.setFrameShape(QFrame.StyledPanel)
         self.frame_15.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.frame_15)
@@ -823,19 +851,78 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_15.addWidget(self.kovertProgressbar)
 
+        self.filelistView = QListWidget(self.frame_11)
+        self.filelistView.setObjectName(u"filelistView")
+
+        self.verticalLayout_15.addWidget(self.filelistView)
+
 
         self.verticalLayout_13.addWidget(self.frame_11)
 
 
         self.verticalLayout_14.addWidget(self.frame_10)
 
-        self.filelistView = QListWidget(self.frame_9)
-        self.filelistView.setObjectName(u"filelistView")
-
-        self.verticalLayout_14.addWidget(self.filelistView)
-
 
         self.verticalLayout_16.addWidget(self.frame_9)
+
+        self.frame_20 = QFrame(self.multiKonvertPage)
+        self.frame_20.setObjectName(u"frame_20")
+        self.frame_20.setFrameShape(QFrame.StyledPanel)
+        self.frame_20.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_21 = QVBoxLayout(self.frame_20)
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.label_9 = QLabel(self.frame_20)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setStyleSheet(u"QLabel {\n"
+"	font: 12pt \"Terminator Two\";\n"
+"	color: rgb(255, 0, 0)\n"
+"}")
+        self.label_9.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_21.addWidget(self.label_9)
+
+        self.dataTableWidget = QTableWidget(self.frame_20)
+        if (self.dataTableWidget.columnCount() < 3):
+            self.dataTableWidget.setColumnCount(3)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.dataTableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.dataTableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        font2 = QFont()
+        font2.setKerning(True)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        __qtablewidgetitem2.setFont(font2);
+        self.dataTableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        self.dataTableWidget.setObjectName(u"dataTableWidget")
+        self.dataTableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        self.dataTableWidget.setAlternatingRowColors(True)
+        self.dataTableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.dataTableWidget.setTextElideMode(Qt.ElideMiddle)
+        self.dataTableWidget.setWordWrap(True)
+        self.dataTableWidget.setColumnCount(3)
+        self.dataTableWidget.horizontalHeader().setCascadingSectionResizes(False)
+        self.dataTableWidget.horizontalHeader().setMinimumSectionSize(57)
+        self.dataTableWidget.horizontalHeader().setStretchLastSection(False)
+
+        self.verticalLayout_21.addWidget(self.dataTableWidget)
+
+        self.frame_21 = QFrame(self.frame_20)
+        self.frame_21.setObjectName(u"frame_21")
+        self.frame_21.setFrameShape(QFrame.StyledPanel)
+        self.frame_21.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_12 = QHBoxLayout(self.frame_21)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.clearOutputBtn = QPushButton(self.frame_21)
+        self.clearOutputBtn.setObjectName(u"clearOutputBtn")
+        self.clearOutputBtn.setMinimumSize(QSize(110, 0))
+
+        self.horizontalLayout_12.addWidget(self.clearOutputBtn, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_21.addWidget(self.frame_21)
+
+
+        self.verticalLayout_16.addWidget(self.frame_20)
 
         self.stackedWidget.addWidget(self.multiKonvertPage)
 
@@ -851,7 +938,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -894,5 +981,13 @@ class Ui_MainWindow(object):
         self.saveMultiBtn.setText(QCoreApplication.translate("MainWindow", u"Konvertieren", None))
         self.multiUploadBtn.setText(QCoreApplication.translate("MainWindow", u"Hinzuf\u00fcgen", None))
         self.eraseUploadBtn.setText(QCoreApplication.translate("MainWindow", u"Entfernen", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Datein im Speicherpfad", None))
+        ___qtablewidgetitem = self.dataTableWidget.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Name", None));
+        ___qtablewidgetitem1 = self.dataTableWidget.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Typ", None));
+        ___qtablewidgetitem2 = self.dataTableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Gr\u00f6\u00dfe", None));
+        self.clearOutputBtn.setText(QCoreApplication.translate("MainWindow", u"Bereinigen", None))
     # retranslateUi
 

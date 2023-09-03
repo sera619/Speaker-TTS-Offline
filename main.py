@@ -40,6 +40,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.threadpool = QThreadPool()
         self.stackedWidget.setCurrentIndex(1)
+        self.createAudioWidget()
         #print("Worker started with maximum %d threads" % self.threadpool.maxThreadCount())
     
 
@@ -58,7 +59,50 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.volumeDial.setMinimum(0)
         self.volumeDial.setValue(self.volume)
         self.volumeDial.valueChanged.connect(self.changeVolume)
+    
+    def readAudioFiles(self, path):
+        audio_files = []
+        for file in os.listdir(path):
+            file_path = os.path.join(path, file)
+            if os.path.isfile(file_path):
+                file_size = os.path.getsize(file_path)
+                file_format = file_path.split(".")[-1]
+                name_parts = file.split(".")
+                audio_files.append({
+                    "name": name_parts[0],
+                    "size": file_size,
+                    "format": file_format
+                })
+        return audio_files
+    
+    def createAudioWidget(self):
+        files = self.readAudioFiles(os.path.join(basedir+SETTINGS['savepath']))
+        self.resetAudioTable()
+
+        if files:
+            for f in files:
+                numRows = self.dataTableWidget.rowCount()
+                self.dataTableWidget.insertRow(numRows)
+                self.dataTableWidget.setItem(numRows, 0, QtWidgets.QTableWidgetItem(f['name']))
+                self.dataTableWidget.setItem(numRows, 1, QtWidgets.QTableWidgetItem(f['format']))
+                self.dataTableWidget.setItem(numRows, 2, QtWidgets.QTableWidgetItem(f"{f['size']} KB"))
+    
+    def deleteAudioOutput(self):
+        path = basedir + SETTINGS['savepath']
+        if self.dataTableWidget.rowCount() == 0:
+            return
+        for f in os.listdir(path):
+            filePath = os.path.join(path, f)
+            if filePath:
+                os.remove(filePath)
+        self.resetAudioTable()
         
+    def resetAudioTable(self):
+        self.dataTableWidget.clear()
+        self.dataTableWidget.setRowCount(0)
+        self.dataTableWidget.setHorizontalHeaderLabels(['Name', 'Format', 'Größe'])
+        self.dataTableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+
     def setupButtons(self):
         self.changeSavepathBtn.clicked.connect(self.chooseFolderClicked)
         self.uploadTxtBtn.clicked.connect(self.uploadTextClicked)
@@ -66,9 +110,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.speakBtn.clicked.connect(self.speakTextClicked)
         self.saveBtn.clicked.connect(self.saveAudioClicked)
         self.miniBtnMinimode.clicked.connect(self.showMinimized)
-
+        self.clearOutputBtn.clicked.connect(self.deleteAudioOutput)
         self.miniBtnMinimize.setDisabled(True)
-        #self.miniBtnMinimize.clicked.connect(self.generateTestFiles)
         voices = self.engine.getProperty('voices')
         voicelist = []
         for i in voices:
@@ -169,13 +212,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.showNotification("Fehler", "Bitte gebe einen Text zum konvertieren ein!")
             
     def saveAudioClicked(self):
-        if self.convertTextEdit != "":
+        if self.convertTextEdit.toPlainText() != "":
             if self.filenameEdit.text() != "":
                 filename = self.filenameEdit.text()
                 self.engine.save_to_file(self.convertTextEdit.toPlainText(), SETTINGS['savepath']+filename+self.formatComboBox.currentText())
                 self.engine.runAndWait()
                 self.convertTextEdit.clear()
                 self.filenameEdit.clear()
+                self.createAudioWidget()
                 self.showNotification("Abgeschlossen", "Text wurde erfolgreich konvertiert!")
             else:
                 self.showNotification("Fehler", "Bitte gebe einen Dateinamen ein!")               
@@ -236,6 +280,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.fileKovertList.clear()
                 self.filelistView.clear()
                 self.filenameEdit.setText("")
+                self.createAudioWidget()
                 self.showNotification("Abgeschlossen", f"Es wurden {count} Datei(n) konvertiert!")
                 self.kovertProgressbar.setVisible(False)
             else:
