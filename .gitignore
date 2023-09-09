@@ -8,3 +8,4 @@ assets/
 Speaker-TTS.spec
 test/
 makefile
+settings.ini
