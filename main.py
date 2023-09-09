@@ -118,7 +118,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.dataTableWidget.setItem(numRows, 2, QtWidgets.QTableWidgetItem(f"{f['size']} KB"))
     
     def deleteAudioOutput(self):
-        path = basedir + SETTINGS['savepath']
+        path = self.config['DEFAULT']['savepath']
         if self.dataTableWidget.rowCount() == 0:
             return
         for f in os.listdir(path):
@@ -295,7 +295,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     with open(file, 'r') as f:
                         text = f.read()
                         filename = self.filenameEdit.text() + f"-{count}"+ self.formatComboBox.currentText()
-                        self.engine.save_to_file(text, SETTINGS['savepath']+filename)
+                        self.engine.save_to_file(text, self.config['DEFAULT']['savepath']+"/"+filename)
                         self.engine.runAndWait()
                     
                 self.fileKovertList.clear()
