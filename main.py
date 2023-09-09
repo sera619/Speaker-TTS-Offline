@@ -6,6 +6,7 @@ from worker import Worker
 from settings import SETTINGS
 import pyttsx3
 import webbrowser
+from configparser import ConfigParser
 
 basedir = os.path.dirname(__file__)
 
@@ -20,18 +21,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
+        self.generateDefaultConfig()
+        self.config = self.loadConfig()
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.setWindowTitle(SETTINGS['title'])
-        self.versionLabel.setText(f"Version {SETTINGS['version']} 2023 by {SETTINGS['author']}")
+        self.versionLabel.setText(f"Version {self.config['DEFAULT']['version']} 2023 by {self.config['DEFAULT']['author']}")
+
         self.engine = pyttsx3.init()
         self.volume = self.engine.getProperty('volume')
         self.rate = self.engine.getProperty('rate')
         self.valumeEdit.setValidator(QtGui.QDoubleValidator(0.1, 1.0, 2))
         self.rateEdit.setValidator(QtGui.QDoubleValidator(10, 500, 2))
         self.formatList = [".mp3", ".wav", '.ogg', '.aac', '.flac']
-        self.currentSavepathLabel.setText(os.getcwd()+SETTINGS["savepath"])
+        self.currentSavepathLabel.setText(self.config['DEFAULT']['savepath'])
         self.convertTextEdit.setPlaceholderText("Bitte gebe hier deinen Text ein den du in eine Audioausgabe umwandeln möchtest...")
-        self.setupFileSystem(os.getcwd()+SETTINGS["savepath"])
+        self.setupFileSystem(self.config['DEFAULT']['savepath'])
         self.setupButtons()
         self.setupDials()
         self.resetOptions()
@@ -43,6 +47,32 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.createAudioWidget()
         #print("Worker started with maximum %d threads" % self.threadpool.maxThreadCount())
     
+
+    def loadConfig(self):
+        configParser = ConfigParser()
+        configParser.read('settings.ini')
+        configParser.sections()
+        return configParser
+
+    def setSavePathConfig(self, path):
+        configParser = ConfigParser()
+        configParser.read("settings.ini")
+        configParser.sections()
+        configParser['DEFAULT']['savepath'] = path
+        with open('settings.ini', "w") as f:
+            configParser.write(f)
+
+    def generateDefaultConfig(self):
+        if os.path.exists("settings.ini"):
+            return
+        configParser = ConfigParser() 
+        configParser['DEFAULT'] = {
+            'version': SETTINGS['version'],
+            'author': 'S3R43o3',
+            'savepath': os.getcwd()+ "\\output"
+        }
+        with open('settings.ini', "w") as f:
+            configParser.write(f)
 
     def generateTestFiles(self):
         texts = ["test1", "test2", "test3", "test4"]
@@ -76,7 +106,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         return audio_files
     
     def createAudioWidget(self):
-        files = self.readAudioFiles(os.path.join(basedir+SETTINGS['savepath']))
+        files = self.readAudioFiles(os.path.join(self.config['DEFAULT']['savepath']))
         self.resetAudioTable()
 
         if files:
@@ -102,6 +132,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.dataTableWidget.setRowCount(0)
         self.dataTableWidget.setHorizontalHeaderLabels(['Name', 'Format', 'Größe'])
         self.dataTableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+         
 
     def setupButtons(self):
         self.changeSavepathBtn.clicked.connect(self.chooseFolderClicked)
@@ -134,22 +165,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.githubBtn.clicked.connect(self.openGithub)
         self.ytBtn.clicked.connect(self.openYoutube)
         self.thmBtn.clicked.connect(self.openTHM)
+        self.eqBtn.clicked.connect(self.showEqPage)
 
-    def runMultiKonvert(self):
-        worker = Worker(self.mulipleConvert)
-        self.threadpool.start(worker)
-    
-    def runPlayDemo(self):
-        worker = Worker(self.playDemo)
-        self.threadpool.start(worker)
-    
-    def runSaveAudio(self):
-        worker = Worker(self.saveAudioClicked)
-        self.threadpool.start(worker)
-    
-    def runSpeakText(self):
-        worker = Worker(self.speakTextClicked)
-        self.threadpool.start(worker)
+    def showEqPage(self):
+        self.stackedWidget.setCurrentWidget(self.eqPage)
+        self.lastPage = self.stackedWidget.currentIndex()
 
     def setupFileSystem(self, path):
         if os.path.exists(path):
@@ -193,6 +213,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         folder_path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Folder', '', options=options)
         if folder_path:
             self.currentSavepathLabel.setText(f'{folder_path}')
+            self.setSavePathConfig(folder_path)
             
     def uploadTextClicked(self):
         options = QtWidgets.QFileDialog.Options()
@@ -215,7 +236,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.convertTextEdit.toPlainText() != "":
             if self.filenameEdit.text() != "":
                 filename = self.filenameEdit.text()
-                self.engine.save_to_file(self.convertTextEdit.toPlainText(), SETTINGS['savepath']+filename+self.formatComboBox.currentText())
+                self.engine.save_to_file(self.convertTextEdit.toPlainText(), self.config['DEFAULT']['savepath']+"/"+filename+self.formatComboBox.currentText())
                 self.engine.runAndWait()
                 self.convertTextEdit.clear()
                 self.filenameEdit.clear()
