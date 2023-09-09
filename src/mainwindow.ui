@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>794</width>
-    <height>765</height>
+    <height>795</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -986,8 +986,36 @@ color:white;
           </property>
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
+            <property name="styleSheet">
+             <string notr="true"> QPushButton {
+		background-color:none;
+                border: .5px solid #ff3333;
+				
+	color: rgb(255, 0, 0);
+			padding:3 15;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 1 #C0392B,                              
+		stop: 0 #E74C3C );
+color:white;
+            }
+            QPushButton:pressed {
+                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 0 #C0392B,                              
+		stop: 1 #E74C3C );
+	color:white;            
+}
+ QPushButton:disabled {
+        background-color: none;
+        border-color: #aaaaaa;
+        color: #666666;
+    }</string>
+            </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="helpPage">
              <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -1598,6 +1626,280 @@ QProgressBar::chunk {
                      </widget>
                     </item>
                    </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="eqPage">
+             <layout class="QVBoxLayout" name="verticalLayout_28">
+              <item>
+               <widget class="QFrame" name="frame_22">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_29">
+                 <item>
+                  <widget class="QLabel" name="label_12">
+                   <property name="styleSheet">
+                    <string notr="true">QLabel {
+	font: 18pt &quot;Terminator Two&quot;;
+	color: rgb(255, 0, 0)
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Equalizer</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_23">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <property name="spacing">
+                  <number>4</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QListWidget" name="savedListWidget"/>
+                 </item>
+                 <item alignment="Qt::AlignVCenter">
+                  <widget class="QFrame" name="frame_24">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_22">
+                    <item>
+                     <widget class="QPushButton" name="saveEqBtn">
+                      <property name="text">
+                       <string>Laden</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="deleteEqBtn">
+                      <property name="text">
+                       <string>Speichern</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="copyBtn">
+                      <property name="text">
+                       <string>Kopieren</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="eqBtn">
+                      <property name="minimumSize">
+                       <size>
+                        <width>110</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true"> QPushButton {
+		background-color:none;
+                border: .5px solid #ff3333;
+				
+	color: rgb(255, 0, 0);
+			padding:3 15;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 1 #C0392B,                              
+		stop: 0 #E74C3C );
+color:white;
+            }
+            QPushButton:pressed {
+                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,
+    	stop: 0 #C0392B,                              
+		stop: 1 #E74C3C );
+	color:white;            
+}
+ QPushButton:disabled {
+        background-color: none;
+        border-color: #aaaaaa;
+        color: #666666;
+    }</string>
+                      </property>
+                      <property name="text">
+                       <string>Equalizer</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_26">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_14">
+                 <item>
+                  <widget class="QFrame" name="frame_27">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_23">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QSlider" name="verticalSlider">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLCDNumber" name="lcdNumber"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_28">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_24">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QSlider" name="verticalSlider_2">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLCDNumber" name="lcdNumber_2"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_29">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_25">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QSlider" name="verticalSlider_3">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLCDNumber" name="lcdNumber_3"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_30">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_26">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QSlider" name="verticalSlider_4">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLCDNumber" name="lcdNumber_4"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_31">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_27">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QSlider" name="verticalSlider_5">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLCDNumber" name="lcdNumber_5"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_32">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_15">
+                 <item>
+                  <widget class="QComboBox" name="eqEffectBox"/>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="playEqBtn">
+                   <property name="text">
+                    <string>Abspielen</string>
+                   </property>
                   </widget>
                  </item>
                 </layout>

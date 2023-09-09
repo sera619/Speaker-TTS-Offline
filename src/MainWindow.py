@@ -17,17 +17,17 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QComboBox,
     QDial, QFrame, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QListWidget, QListWidgetItem,
-    QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
-    QSizePolicy, QStackedWidget, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+    QLCDNumber, QLabel, QLineEdit, QListWidget,
+    QListWidgetItem, QMainWindow, QPlainTextEdit, QProgressBar,
+    QPushButton, QSizePolicy, QSlider, QStackedWidget,
+    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 import src.resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(794, 765)
+        MainWindow.resize(794, 795)
         MainWindow.setStyleSheet(u"QMainWindow{\n"
 "	border-radius: 15px;\n"
 "	background-color: rgba(31, 31, 31, 120);\n"
@@ -539,6 +539,32 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.stackedWidget = QStackedWidget(self.rightFrame)
         self.stackedWidget.setObjectName(u"stackedWidget")
+        self.stackedWidget.setStyleSheet(u" QPushButton {\n"
+"		background-color:none;\n"
+"                border: .5px solid #ff3333;\n"
+"				\n"
+"	color: rgb(255, 0, 0);\n"
+"			padding:3 15;\n"
+"                border-radius: 5px;\n"
+"                font-weight: bold;\n"
+"            }\n"
+"            QPushButton:hover {\n"
+"              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 1 #C0392B,                              \n"
+"		stop: 0 #E74C3C );\n"
+"color:white;\n"
+"            }\n"
+"            QPushButton:pressed {\n"
+"                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 0 #C0392B,                              \n"
+"		stop: 1 #E74C3C );\n"
+"	color:white;            \n"
+"}\n"
+" QPushButton:disabled {\n"
+"        background-color: none;\n"
+"        border-color: #aaaaaa;\n"
+"        color: #666666;\n"
+"    }")
         self.helpPage = QWidget()
         self.helpPage.setObjectName(u"helpPage")
         self.verticalLayout_19 = QVBoxLayout(self.helpPage)
@@ -925,6 +951,230 @@ class Ui_MainWindow(object):
         self.verticalLayout_16.addWidget(self.frame_20)
 
         self.stackedWidget.addWidget(self.multiKonvertPage)
+        self.eqPage = QWidget()
+        self.eqPage.setObjectName(u"eqPage")
+        self.verticalLayout_28 = QVBoxLayout(self.eqPage)
+        self.verticalLayout_28.setObjectName(u"verticalLayout_28")
+        self.frame_22 = QFrame(self.eqPage)
+        self.frame_22.setObjectName(u"frame_22")
+        self.frame_22.setFrameShape(QFrame.StyledPanel)
+        self.frame_22.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_29 = QVBoxLayout(self.frame_22)
+        self.verticalLayout_29.setObjectName(u"verticalLayout_29")
+        self.label_12 = QLabel(self.frame_22)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setStyleSheet(u"QLabel {\n"
+"	font: 18pt \"Terminator Two\";\n"
+"	color: rgb(255, 0, 0)\n"
+"}")
+        self.label_12.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_29.addWidget(self.label_12)
+
+
+        self.verticalLayout_28.addWidget(self.frame_22)
+
+        self.frame_23 = QFrame(self.eqPage)
+        self.frame_23.setObjectName(u"frame_23")
+        self.frame_23.setFrameShape(QFrame.StyledPanel)
+        self.frame_23.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_13 = QHBoxLayout(self.frame_23)
+        self.horizontalLayout_13.setSpacing(4)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalLayout_13.setContentsMargins(0, -1, 0, -1)
+        self.savedListWidget = QListWidget(self.frame_23)
+        self.savedListWidget.setObjectName(u"savedListWidget")
+
+        self.horizontalLayout_13.addWidget(self.savedListWidget)
+
+        self.frame_24 = QFrame(self.frame_23)
+        self.frame_24.setObjectName(u"frame_24")
+        self.frame_24.setFrameShape(QFrame.StyledPanel)
+        self.frame_24.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_22 = QVBoxLayout(self.frame_24)
+        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
+        self.saveEqBtn = QPushButton(self.frame_24)
+        self.saveEqBtn.setObjectName(u"saveEqBtn")
+
+        self.verticalLayout_22.addWidget(self.saveEqBtn)
+
+        self.deleteEqBtn = QPushButton(self.frame_24)
+        self.deleteEqBtn.setObjectName(u"deleteEqBtn")
+
+        self.verticalLayout_22.addWidget(self.deleteEqBtn)
+
+        self.copyBtn = QPushButton(self.frame_24)
+        self.copyBtn.setObjectName(u"copyBtn")
+
+        self.verticalLayout_22.addWidget(self.copyBtn)
+
+        self.eqBtn = QPushButton(self.frame_24)
+        self.eqBtn.setObjectName(u"eqBtn")
+        self.eqBtn.setMinimumSize(QSize(110, 0))
+        self.eqBtn.setStyleSheet(u" QPushButton {\n"
+"		background-color:none;\n"
+"                border: .5px solid #ff3333;\n"
+"				\n"
+"	color: rgb(255, 0, 0);\n"
+"			padding:3 15;\n"
+"                border-radius: 5px;\n"
+"                font-weight: bold;\n"
+"            }\n"
+"            QPushButton:hover {\n"
+"              		background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 1 #C0392B,                              \n"
+"		stop: 0 #E74C3C );\n"
+"color:white;\n"
+"            }\n"
+"            QPushButton:pressed {\n"
+"                background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"    	stop: 0 #C0392B,                              \n"
+"		stop: 1 #E74C3C );\n"
+"	color:white;            \n"
+"}\n"
+" QPushButton:disabled {\n"
+"        background-color: none;\n"
+"        border-color: #aaaaaa;\n"
+"        color: #666666;\n"
+"    }")
+
+        self.verticalLayout_22.addWidget(self.eqBtn)
+
+
+        self.horizontalLayout_13.addWidget(self.frame_24, 0, Qt.AlignVCenter)
+
+
+        self.verticalLayout_28.addWidget(self.frame_23)
+
+        self.frame_26 = QFrame(self.eqPage)
+        self.frame_26.setObjectName(u"frame_26")
+        self.frame_26.setFrameShape(QFrame.StyledPanel)
+        self.frame_26.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_14 = QHBoxLayout(self.frame_26)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.frame_27 = QFrame(self.frame_26)
+        self.frame_27.setObjectName(u"frame_27")
+        self.frame_27.setFrameShape(QFrame.StyledPanel)
+        self.frame_27.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_23 = QVBoxLayout(self.frame_27)
+        self.verticalLayout_23.setObjectName(u"verticalLayout_23")
+        self.verticalSlider = QSlider(self.frame_27)
+        self.verticalSlider.setObjectName(u"verticalSlider")
+        self.verticalSlider.setOrientation(Qt.Vertical)
+
+        self.verticalLayout_23.addWidget(self.verticalSlider, 0, Qt.AlignHCenter)
+
+        self.lcdNumber = QLCDNumber(self.frame_27)
+        self.lcdNumber.setObjectName(u"lcdNumber")
+
+        self.verticalLayout_23.addWidget(self.lcdNumber)
+
+
+        self.horizontalLayout_14.addWidget(self.frame_27)
+
+        self.frame_28 = QFrame(self.frame_26)
+        self.frame_28.setObjectName(u"frame_28")
+        self.frame_28.setFrameShape(QFrame.StyledPanel)
+        self.frame_28.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_24 = QVBoxLayout(self.frame_28)
+        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.verticalSlider_2 = QSlider(self.frame_28)
+        self.verticalSlider_2.setObjectName(u"verticalSlider_2")
+        self.verticalSlider_2.setOrientation(Qt.Vertical)
+
+        self.verticalLayout_24.addWidget(self.verticalSlider_2, 0, Qt.AlignHCenter)
+
+        self.lcdNumber_2 = QLCDNumber(self.frame_28)
+        self.lcdNumber_2.setObjectName(u"lcdNumber_2")
+
+        self.verticalLayout_24.addWidget(self.lcdNumber_2)
+
+
+        self.horizontalLayout_14.addWidget(self.frame_28)
+
+        self.frame_29 = QFrame(self.frame_26)
+        self.frame_29.setObjectName(u"frame_29")
+        self.frame_29.setFrameShape(QFrame.StyledPanel)
+        self.frame_29.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_25 = QVBoxLayout(self.frame_29)
+        self.verticalLayout_25.setObjectName(u"verticalLayout_25")
+        self.verticalSlider_3 = QSlider(self.frame_29)
+        self.verticalSlider_3.setObjectName(u"verticalSlider_3")
+        self.verticalSlider_3.setOrientation(Qt.Vertical)
+
+        self.verticalLayout_25.addWidget(self.verticalSlider_3, 0, Qt.AlignHCenter)
+
+        self.lcdNumber_3 = QLCDNumber(self.frame_29)
+        self.lcdNumber_3.setObjectName(u"lcdNumber_3")
+
+        self.verticalLayout_25.addWidget(self.lcdNumber_3)
+
+
+        self.horizontalLayout_14.addWidget(self.frame_29)
+
+        self.frame_30 = QFrame(self.frame_26)
+        self.frame_30.setObjectName(u"frame_30")
+        self.frame_30.setFrameShape(QFrame.StyledPanel)
+        self.frame_30.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_26 = QVBoxLayout(self.frame_30)
+        self.verticalLayout_26.setObjectName(u"verticalLayout_26")
+        self.verticalSlider_4 = QSlider(self.frame_30)
+        self.verticalSlider_4.setObjectName(u"verticalSlider_4")
+        self.verticalSlider_4.setOrientation(Qt.Vertical)
+
+        self.verticalLayout_26.addWidget(self.verticalSlider_4, 0, Qt.AlignHCenter)
+
+        self.lcdNumber_4 = QLCDNumber(self.frame_30)
+        self.lcdNumber_4.setObjectName(u"lcdNumber_4")
+
+        self.verticalLayout_26.addWidget(self.lcdNumber_4)
+
+
+        self.horizontalLayout_14.addWidget(self.frame_30)
+
+        self.frame_31 = QFrame(self.frame_26)
+        self.frame_31.setObjectName(u"frame_31")
+        self.frame_31.setFrameShape(QFrame.StyledPanel)
+        self.frame_31.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_27 = QVBoxLayout(self.frame_31)
+        self.verticalLayout_27.setObjectName(u"verticalLayout_27")
+        self.verticalSlider_5 = QSlider(self.frame_31)
+        self.verticalSlider_5.setObjectName(u"verticalSlider_5")
+        self.verticalSlider_5.setOrientation(Qt.Vertical)
+
+        self.verticalLayout_27.addWidget(self.verticalSlider_5, 0, Qt.AlignHCenter)
+
+        self.lcdNumber_5 = QLCDNumber(self.frame_31)
+        self.lcdNumber_5.setObjectName(u"lcdNumber_5")
+
+        self.verticalLayout_27.addWidget(self.lcdNumber_5)
+
+
+        self.horizontalLayout_14.addWidget(self.frame_31)
+
+
+        self.verticalLayout_28.addWidget(self.frame_26)
+
+        self.frame_32 = QFrame(self.eqPage)
+        self.frame_32.setObjectName(u"frame_32")
+        self.frame_32.setFrameShape(QFrame.StyledPanel)
+        self.frame_32.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_15 = QHBoxLayout(self.frame_32)
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.eqEffectBox = QComboBox(self.frame_32)
+        self.eqEffectBox.setObjectName(u"eqEffectBox")
+
+        self.horizontalLayout_15.addWidget(self.eqEffectBox)
+
+        self.playEqBtn = QPushButton(self.frame_32)
+        self.playEqBtn.setObjectName(u"playEqBtn")
+
+        self.horizontalLayout_15.addWidget(self.playEqBtn)
+
+
+        self.verticalLayout_28.addWidget(self.frame_32)
+
+        self.stackedWidget.addWidget(self.eqPage)
 
         self.verticalLayout_4.addWidget(self.stackedWidget)
 
@@ -938,7 +1188,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -989,5 +1239,11 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem2 = self.dataTableWidget.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Gr\u00f6\u00dfe", None));
         self.clearOutputBtn.setText(QCoreApplication.translate("MainWindow", u"Bereinigen", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"Equalizer", None))
+        self.saveEqBtn.setText(QCoreApplication.translate("MainWindow", u"Laden", None))
+        self.deleteEqBtn.setText(QCoreApplication.translate("MainWindow", u"Speichern", None))
+        self.copyBtn.setText(QCoreApplication.translate("MainWindow", u"Kopieren", None))
+        self.eqBtn.setText(QCoreApplication.translate("MainWindow", u"Equalizer", None))
+        self.playEqBtn.setText(QCoreApplication.translate("MainWindow", u"Abspielen", None))
     # retranslateUi
 
